@@ -1,0 +1,59 @@
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# C++ build outputs
+*.exe
+*.out
+*.app
+*.o
+*.obj
+*.dll
+*.so
+*.dylib
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Kernel Module Compile Results
+*.mod*
+*.cmd
+.tmp_versions/
+modules.order
+Module.symvers
+Mkfile.old
+dkms.conf
+
+# CMake build directory
+build/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Dependency directories
+dependencies/
+libs/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
