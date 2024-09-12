@@ -57,3 +57,7 @@ libs/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+
+# Main
+main.cpp
