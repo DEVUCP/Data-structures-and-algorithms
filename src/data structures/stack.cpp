@@ -15,7 +15,7 @@ class Stack{
         Stack(){};
 
         // Push front
-        void push(const T elem){
+        void push(const T& elem){
 
             if(top >= MAX)
                 throw std::overflow_error("Stack overflow");
@@ -47,7 +47,7 @@ class Stack{
         }
 
         // Search
-        int search(const int elem){
+        int search(const T& elem){
             if(top < 0)
                 throw std::underflow_error("Stack is empty");
             
