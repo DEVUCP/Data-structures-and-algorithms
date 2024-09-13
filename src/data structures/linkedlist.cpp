@@ -21,6 +21,15 @@ class LinkedList{
             size = 0;
         }
 
+        ~LinkedList(){
+            Node<T>* current = this->head;
+            while(current != nullptr){
+                Node<T>* next = current->next;
+                delete current;
+                current = next;
+            }
+        }
+
         void push_front(const T& elem){
             insert(elem, 0);
         }
@@ -44,17 +53,17 @@ class LinkedList{
                 return;
             }
 
-            Node<T>* last = this->head;
+            Node<T>* current = this->head;
             int i = 0;
 
             while(i < index-1){
-                last = last->next;
+                current = current->next;
                 i++;
             }
 
-            Node<T>* moved = last->next;
+            Node<T>* moved = current->next;
             Node<T>* new_elem = new Node<T>{elem, moved};
-            last->next = new_elem;
+            current->next = new_elem;
             size++;
 
         }
@@ -72,29 +81,29 @@ class LinkedList{
             }
             
             int i = 0;
-            Node<T>* last = this->head;
+            Node<T>* current = this->head;
 
             while(i < index-1){ // Gets address of node before the one to be popped
-                last = last->next;
+                current = current->next;
                 i++;
             }
 
-            if(index == size-1){ // if last element
-                Node<T>* popped = last->next;
+            if(index == size-1){ // if current element
+                Node<T>* popped = current->next;
                 T data = popped->data;
 
-                last->next = nullptr;
+                current->next = nullptr;
                 delete popped;
                 return data;
             }
 
             // otherwise
 
-            Node<T>* popped = last->next;
+            Node<T>* popped = current->next;
             T data = popped->data;
             Node<T>* after = popped->next;
 
-            last->next = after;
+            current->next = after;
             delete popped;
             return data;
 
@@ -110,15 +119,17 @@ class LinkedList{
 
         void print(){
 
-            Node<T>* last = this->head;
+            Node<T>* current = this->head;
             std::cout << "LinkedList = [ ";
-            std::cout << last->data;
+            std::cout << current->data;
 
-            while(last->next != nullptr){
-                last = last->next;
+            while(current->next != nullptr){
+                current = current->next;
                 std::cout << ", ";
-                std::cout << last->data;
+                std::cout << current->data;
             }
             std::cout << " ]" << std::endl;
         }
+
+
 };
