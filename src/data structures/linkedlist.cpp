@@ -14,10 +14,12 @@ class LinkedList{
     public:
 
         Node<T>* head;
+        Node<T>* tail;
         int size;
 
         LinkedList(){
             this->head = nullptr;
+            this->tail = this->head;
             size = 0;
         }
 
@@ -65,6 +67,9 @@ class LinkedList{
             Node<T>* new_elem = new Node<T>{elem, moved};
             current->next = new_elem;
             size++;
+            if(index == size-1){
+                this->tail = new_elem;
+            }
 
         }
 
@@ -77,7 +82,9 @@ class LinkedList{
 
                 Node<T>* popped = this->head;
                 T data = popped->data;
-                head->next;
+                this->head = head->next;
+                delete popped;
+                return data;
             }
             
             int i = 0;
@@ -109,12 +116,12 @@ class LinkedList{
 
         }
 
-        T pop_front(const T& elem){
-            return pop(elem, 0);
+        T pop_front(){
+            return pop(0);
         }
     
-        T pop_back(const T& elem){
-            return pop(elem, size-1);
+        T pop_back(){
+            return pop(size-1);
         }
 
         void print(){
