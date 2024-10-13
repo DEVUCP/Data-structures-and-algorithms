@@ -1,4 +1,5 @@
 #include <iostream>
+#include <type_traits>
 
 using std::cout;
 
@@ -165,9 +166,44 @@ class DynamicArray{
             }
         }
         
+        int countPrime(){
+            static_assert(std::is_same<T, int>::value, "countPrime() can only be used with int type.");
+            int count = 0;
+            for (int j = 0; j < this->size; j++) {
+
+                if (this->array[j] > 1) { 
+                    bool prime = true; 
+
+                    for (int i = 2; i * i <= this->array[j]; ++i) {
+                        if (this->array[j] % i == 0) {
+                            prime = false;
+                            break;
+                        }
+                    }
+                    if (prime) {
+                        count++; // Count the prime number
+                    }
+                }
+            }
+            return count;
+        }
+
+        int countEven() {
+            static_assert(std::is_same<T, int>::value, "countEven() can only be used with int type.");
+            int count = 0;
+            for (int i = 0; i < this->size; i++) {
+                if (this->array[i] % 2 == 0) {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+
         // I would add countPrime() and countEven() methods, but those are int exclusive
         ~DynamicArray(){
             delete [] array;
         }
 };
+
 
