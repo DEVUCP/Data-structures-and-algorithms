@@ -17,6 +17,18 @@ class DynamicArray{
             array = new T[capacity];
         }
 
+        T operator[](int index) { // Overloads [] operator for element retrieval
+        return this->array[index];
+        }   
+
+        friend std::ostream& operator<<(std::ostream& os, const DynamicArray<T>& arr){ // Overloads the ostream << operator for full array output
+            for(int i = 0; i < arr.size; i++){
+                os << arr.array[i] << " ";
+            }
+
+            return os;
+        }
+
         void shrink(){
             capacity /= 2;
             T* new_array = new T[capacity];
@@ -121,7 +133,41 @@ class DynamicArray{
             cout << " ]" << std::endl;
         }
 
+        bool isEmpty(){
+            return !this->size;
+        }
+
+        void sort(){
+            int n = this->size();
+            for (int i = 0; i < n - 1; ++i) {
+
+                bool swapped = false;
+
+                for (int j = 0; j < n - i - 1; ++j) {
+
+                    if (this->array[j] > this->array[j + 1]) {
+                        std::swap(this->array[j], this->array[j + 1]);
+                        swapped = true;
+                    }
+                }
+                if (!swapped) {
+                    break;
+                }
+            }
+        }
+
+        void reverse(){
+            int beg = 0;
+            int end = this->size - 1;
+
+            while (beg < end) { // swap alternating
+                std::swap(this->array[beg++], this->array[end--]);
+            }
+        }
+        
+        // I would add countPrime() and countEven() methods, but those are int exclusive
         ~DynamicArray(){
             delete [] array;
         }
 };
+
