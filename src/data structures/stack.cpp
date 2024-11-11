@@ -7,12 +7,14 @@ class Stack{
     // First in last out
 
     private:
-        T array[MAX];
+        T arr[MAX];
         int top = -1;
     
     public:
 
         Stack(){};
+        
+        int getTop(){return top;}
 
         // Push front
         void push(const T& elem){
@@ -20,7 +22,7 @@ class Stack{
             if(top >= MAX)
                 throw std::overflow_error("Stack overflow");
 
-            array[++top] = elem;
+            arr[++top] = elem;
         }
 
 
@@ -29,7 +31,7 @@ class Stack{
             if(top < 0)
                 throw std::underflow_error("Stack underflow");
             
-            return array[top--];
+            return arr[top--];
         }
 
         // Peek front
@@ -39,7 +41,7 @@ class Stack{
                 throw std::underflow_error("Stack is empty");
             }
 
-            return array[top];
+            return arr[top];
         }
         // Empty
         bool isEmpty(){
@@ -52,11 +54,31 @@ class Stack{
                 throw std::underflow_error("Stack is empty");
             
             for(int i = top; i >= 0; i--){
-                if(array[i] == elem)
+                if(arr[i] == elem)
                     return i;
             }
 
             return -1;
         }
+
+        void print(){
+            if(top < 0)
+                throw std::underflow_error("Stack is empty");
+            std::cout<< "[ ";
+            for(int i = 0; i<top;i++){
+                if (i+1 != top)
+                    std::cout<< this->arr[i] << ", ";
+                else
+                    std::cout<< this->arr[i] << " ]";
+            }
+        }
+
+        void clear(){
+            if(top < 0)
+                throw std::underflow_error("Stack is empty");
+            top = -1;
+                
+        }
+        
 
 };
