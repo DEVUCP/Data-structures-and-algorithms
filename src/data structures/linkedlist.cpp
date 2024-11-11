@@ -32,6 +32,17 @@ class LinkedList{
             }
         }
 
+        void clear(){
+            Node<T>* current = this->head;
+            
+            while(current != nullptr){
+                Node<T>* next = current->next;
+                delete current;
+                current = next;
+            }
+            this->head = nullptr;
+        }
+        
         int getSize(){
             return this->size;
         }
