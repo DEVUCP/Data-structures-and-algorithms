@@ -10,7 +10,7 @@ class LinkedStack : public LinkedList<T>{
 
     LinkedStack(){}
 
-    T peak(const int &index){
+    T peek(const int &index){
 
         Node<T>* current = this->head;
         int i = 0;
