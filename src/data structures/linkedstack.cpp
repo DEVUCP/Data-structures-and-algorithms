@@ -31,4 +31,8 @@ class LinkedStack : public LinkedList<T>{
     T pop(){
         return this->pop_front();
     }
+
+    bool isEmpty(){
+        return LinkedList<T>::isEmpty();
+    }
 };
