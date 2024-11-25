@@ -21,9 +21,16 @@ class DynamicArr{
 
         T& operator[](int index) { // Overloads [] operator for element retrieval
         return this->arr[index];
+        }
+
+        const T& operator[](int index) const{ // Overloads [] operator for element retrieval
+            if(index < 0){
+                return this->arr[size-1]; // if the index is negative return the last element in the array.
+            }
+        return this->arr[index];
         }   
 
-        friend std::ostream& operator<<(std::ostream& os, const DynamicArr<T>& arr){ // Overloads the ostream << operator for full arr output
+        friend std::ostream& operator<<(std::ostream& os, const DynamicArr<T>& arr) { // Overloads the ostream << operator for full arr output
             for(int i = 0; i < arr.size; i++){
                 os << arr.arr[i] << " ";
             }
