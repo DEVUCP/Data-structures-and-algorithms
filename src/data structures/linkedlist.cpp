@@ -1,3 +1,5 @@
+#ifndef LINKED_LIST_CPP
+#define LINKED_LIST_CPP
 #include <iostream>
 
 using std::string;
@@ -226,4 +228,30 @@ class LinkedList{
                 this->pop_back();
         }
 
+        T& operator[](int index) { // Overloads [] operator for element retrieval
+            if(index < 0 || index > size){
+                return this->tail->data; // if the index is negative return the last element in the queue.
+            }
+            Node<T>* current = this->head;
+            for(int i = 0; i<index;i++){
+                current = current->next;
+            }
+            return current->data;
+        }
+
+        const T& operator[](int index) const{ // Overloads [] operator for element retrieval
+            if(index < 0 || index >= size){
+                return this->tail->data; // if the index is negative return the last element in the queue.
+            }
+            Node<T>* current = this->head;
+            for(int i = 0; i<index;i++){
+                current = current->next;
+            }
+            return current->data;
+        }      
+        bool isEmpty(){
+            return !size;
+        }
 };
+
+#endif
